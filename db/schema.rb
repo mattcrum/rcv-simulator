@@ -20,13 +20,4 @@ ActiveRecord::Schema.define(version: 2019_09_09_004114) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "games", force: :cascade do |t|
-    t.integer "mushroom"
-    t.integer "supreme"
-    t.integer "pepperoni"
-    t.integer "hawaiian"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
