@@ -2,12 +2,12 @@ class BallotsController < ApplicationController
   before_action :set_ballot, only: [:show, :update]
 
   def index
-    ballots = Ballot.all
-    render json: ballots
+    @ballots = Ballot.all
+    render json: @ballots.to_json(only: %i[id first_choice second_choice third_choice])
   end
 
   def show
-    render json: @ballot
+    render json: @ballot.to_json(only: %i[id first_choice second_choice third_choice])
   end
 
   def create
@@ -15,12 +15,7 @@ class BallotsController < ApplicationController
     render json: ballot, status: 201
   end
 
-  def update
-    @ballot.update(ballot_params)
-    render json: @ballot
-  end
-
-  private
+private
 
   def ballot_params
     params.permit(:first_choice, :second_choice, :third_choice)
