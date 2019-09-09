@@ -24,16 +24,20 @@ class Ballot {
 // Mushroom: 0, Supreme: 1, Pepperoni: 2, Hawaiian: 3
 
 function createBallot() {
-  $.get( "/ballots/" + vote_tally + ".json" ).then(
-    function(data) {
-      let ballot = new Ballot(data);
-      $("#first").append(CHOICES[ballot.first_choice - 1])
-      $(".ballot").attr("id", ballot.first_choice)
-      $("#second").append(CHOICES[ballot.second_choice - 1])
-      $("#third").append(CHOICES[ballot.third_choice - 1])
-    }
-  );
-  vote_tally ++;
+  if (vote_tally < 17) {
+    $.get( "/ballots/" + vote_tally + ".json" ).then(
+      function(data) {
+        let ballot = new Ballot(data);
+        $("#first").append(CHOICES[ballot.first_choice - 1])
+        $(".ballot").attr("id", ballot.first_choice)
+        $("#second").append(CHOICES[ballot.second_choice - 1])
+        $("#third").append(CHOICES[ballot.third_choice - 1])
+      }
+    );
+    vote_tally ++;
+  } else {
+    console.log("All Done!")
+  }
 }
 
 function countVote(ballot) {

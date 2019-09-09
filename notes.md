@@ -1,0 +1,1 @@
+- Add ondrop event to divs that either marks it as correct and resets the board with the next ballot, or tells them to try again.
