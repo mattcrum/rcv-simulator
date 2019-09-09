@@ -70,7 +70,7 @@ function countVote(event) {
 
 function checkVote(event) {
   if ( event.target.id === $(".ballot").attr("id") ) {
-    event.target.style.border = "3px dotted green";
+    event.target.style.border = "3px dotted white";
     console.log("Match")
   } else {
     event.target.style.border = "3px dotted red";

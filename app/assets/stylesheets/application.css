@@ -20,13 +20,13 @@ body {
   color: #363537;
 }
 
- .navbar {
+.navbar {
   padding: 1.5em 2em;
   background-color: #DF361C;
   position: fixed-top;
  }
 
- .navbar-text {
+.navbar-text {
   font-size: 1.5em;
   font-weight: 700;
   padding: 0 .5em;
@@ -40,7 +40,7 @@ body {
   margin: 5em auto;
 }
 
- .candidate {
+.candidate {
   background-color: #4D7D7F;
   display: inline-block;
   height: 100px;
@@ -54,7 +54,7 @@ body {
  }
 
 
- .ballot {
+.ballot {
   border: 3px solid gray;
   height: auto;
   padding-bottom: -5em;
