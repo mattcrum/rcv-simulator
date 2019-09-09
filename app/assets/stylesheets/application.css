@@ -22,7 +22,7 @@ body {
 
  .navbar {
   padding: 1.5em 2em;
-  background-color: #68C5B1;
+  background-color: #DF361C;
   position: fixed-top;
  }
 
@@ -35,37 +35,29 @@ body {
 }
 
 .container {
-  display: flex;
-  margin: 0px 50px;
+  width: 90%;
+  text-align: center;
+  margin: 5em auto;
 }
 
- #droptarget {
-  background-color: #F3E758;
-  height: 100px;
-  width: 200px;
+ .candidate {
+  background-color: #4D7D7F;
   display: inline-block;
+  height: 100px;
+  width: 22%;
+  color: #FFFFFF;
   text-align: center;
-  padding-top: 15px;
-  margin: 10px;
+  font-size: .75em;
+  margin: 3em 1em;
+  padding-top: 2.5em;
   border-radius: 5px;
  }
 
- #notarget {
-  background-color: #F3E758;
-  height: 100px;
-  width: 200px;
-  display: inline-block;
-  text-align: center;
-  padding-top: 15px;
-  margin: 10px;
-  border-radius: 5px;
- }
 
- .dragtarget {
+ .ballot {
   border: 3px solid gray;
-  margin-top: 100px;
-  padding: 0px 30px;
-  height: 200px;
+  height: auto;
+  padding-bottom: -5em;
   width: 200px;
   text-align: center;
   border-radius: 5px;

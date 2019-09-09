@@ -1,4 +1,4 @@
-const choices = [ "Mushroom", "Supreme", "Pepperoni", "Hawaiian" ]
+const CHOICES = [ "Mushroom", "Supreme", "Pepperoni", "Hawaiian" ]
 
 let mushroom = 0
 let supreme = 0
@@ -25,13 +25,16 @@ class Ballot {
 function createBallot() {
   $.get( "/ballots/" + vote_tally + ".json" ).then(
     function(data) {
-      console.log(data)
       let ballot = new Ballot(data);
-      $("#first").append(choices[ballot.first_choice - 1])
-      $("#second").append(choices[ballot.second_choice - 1])
-      $("#third").append(choices[ballot.third_choice - 1])
+      $("#first").append(CHOICES[ballot.first_choice - 1])
+      $("#first").attr("data-id", ballot.first_choice)
+      $("#second").append(CHOICES[ballot.second_choice - 1])
+      $("#second").attr("data-id", ballot.second_choice)
+      $("#third").append(CHOICES[ballot.third_choice - 1])
+      $("#third").attr("data-id", ballot.third_choice)
     }
   );
+  vote_tally ++;
 }
 
 function countVote(ballot) {

@@ -1,36 +1,30 @@
-<div>
-  <br>
-  <br>
-  <h1 style="text-align: center;">Round 1</h1>
-  <p style="text-align: center;">Drag and drop your ballot onto the correct choice to count your vote.</p>
-  <br>
-</div>
 <div class="container">
-  <div class="droptarget" id="droptarget" data-id="1">
+  <h1>Round 1</h1>
+  <p>Drag and drop your ballot onto the correct choice to count your vote.</p>
+
+  <div class="candidate" data-id="1">
     <h1>Mushroom</h1>
   </div>
 
-  <div id="notarget" class="notarget" data-id="2">
+  <div class="candidate" data-id="2">
     <h1>Supreme</h1>
   </div>
 
-  <div id="notarget" class="notarget" data-id="3">
+  <div class="candidate" data-id="3">
     <h1>Pepperoni</h1>
   </div>
 
-  <div id="notarget" class="notarget" data-id="4">
+  <div class="candidate" data-id="4">
     <h1>Hawaiian</h1>
   </div>
-</div>
 
-<br>
-<br>
+  <div class="ballot" draggable="true">
+    <h3>Favorite Pizza Ballot</h3>
+    <ol>
+      <li id="first"></li>
+      <li id="second"></li>
+      <li id="third"></li>
+    </ol>
+  </div>
 
-<div class="dragtarget" draggable="true">
-  <h3>Favorite Pizza Ballot</h3>
-  <ol>
-    <li id="first"></li>
-    <li id="second"></li>
-    <li id="third"></li>
-  </ol>
 </div>
