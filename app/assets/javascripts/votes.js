@@ -3,6 +3,7 @@ $(document).ready(function() {
   for (let i=0; i < ballots.length; i++) {
     countVote(ballots[i].first_choice);
   }
+  displayVotes();
   console.log("done")
 });
 let ballots = []
@@ -49,6 +50,13 @@ function countVote(ballot) {
       console.log(pepperoni);
       break;
   }
+}
+
+function displayVotes() {
+  $("div[data-id=1]").append("(" + mushroom + " Votes)")
+  $("div[data-id=2]").append("(" + supreme + " Votes)")
+  $("div[data-id=3]").append("(" + pepperoni + " Votes)")
+  $("div[data-id=4]").append("(" + hawaiian + " Votes)")
 }
 
 document.addEventListener("dragenter", function(event) {
