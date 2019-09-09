@@ -5,6 +5,7 @@ let supreme = 0
 let pepperoni = 0
 let hawaiian = 0
 let vote_tally = 1
+let ballots = []
 
 $(document).ready(function() {
   createBallot();
@@ -27,11 +28,9 @@ function createBallot() {
     function(data) {
       let ballot = new Ballot(data);
       $("#first").append(CHOICES[ballot.first_choice - 1])
-      $("#first").attr("data-id", ballot.first_choice)
+      $(".ballot").attr("id", ballot.first_choice)
       $("#second").append(CHOICES[ballot.second_choice - 1])
-      $("#second").attr("data-id", ballot.second_choice)
       $("#third").append(CHOICES[ballot.third_choice - 1])
-      $("#third").attr("data-id", ballot.third_choice)
     }
   );
   vote_tally ++;
@@ -65,8 +64,28 @@ function displayVotes() {
   $("div[data-id=4]").append("(" + hawaiian + " Votes)")
 }
 
+function countVote(event) {
+  event.dataTransfer.setData("text", event.target.id);
+}
+
+function checkVote(event) {
+  if ( event.target.id === $(".ballot").attr("id") ) {
+    event.target.style.border = "3px dotted green";
+    console.log("Match")
+  } else {
+    event.target.style.border = "3px dotted red";
+    console.log("Next")
+  }
+}
+
+$(document).on("dragleave", function(event) {
+  event.target.style.border = "";
+});
+
+
+
+/*
 document.addEventListener("dragenter", function(event) {
-  debugger;
   if ( event.target.className == "droptarget" ) {
     event.target.style.border = "3px dotted green";
   } else if (event.target.className == "notarget") {
@@ -91,3 +110,5 @@ document.addEventListener("drop", function(event) {
     document.getElementById("droptarget").style.color="green";
   }
 });
+
+*/

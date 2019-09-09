@@ -2,19 +2,19 @@
   <h1>Round 1</h1>
   <p>Drag and drop your ballot onto the correct choice to count your vote.</p>
 
-  <div class="candidate" data-id="1">
+  <div class="candidate" ondragenter="checkVote(event)" id="1">
     <h1>Mushroom</h1>
   </div>
 
-  <div class="candidate" data-id="2">
+  <div class="candidate" ondragenter="checkVote(event)" id="2">
     <h1>Supreme</h1>
   </div>
 
-  <div class="candidate" data-id="3">
+  <div class="candidate" ondragenter="checkVote(event)" id="3">
     <h1>Pepperoni</h1>
   </div>
 
-  <div class="candidate" data-id="4">
+  <div class="candidate" ondragenter="checkVote(event)" id="4">
     <h1>Hawaiian</h1>
   </div>
 
@@ -26,5 +26,6 @@
       <li id="third"></li>
     </ol>
   </div>
+
 
 </div>
