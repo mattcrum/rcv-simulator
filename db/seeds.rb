@@ -32,7 +32,7 @@ ballots = Ballot.create([
   { first_choice: 4, second_choice: 3, third_choice: 1, round_id: 2 },
   { first_choice: 4, second_choice: 3, third_choice: 2, round_id: 2 },
 
-  { first_choice: 2, second_choice: 3, third_choice: 4, round_id: 1 },
-  { first_choice: 2, second_choice: 4, third_choice: 3, round_id: 1 },
-  { first_choice: 2, second_choice: 1, third_choice: 4, round_id: 1 }
+  { first_choice: 2, second_choice: 3, third_choice: 4, round_id: 3 },
+  { first_choice: 2, second_choice: 4, third_choice: 3, round_id: 3 },
+  { first_choice: 2, second_choice: 1, third_choice: 4, round_id: 3 }
 ])

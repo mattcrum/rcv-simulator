@@ -74,12 +74,13 @@ function createThirdBallot() {
           $("#second").addClass("counted");
           $(".ballot").attr("id", ballot.third_choice);
         } else {
+          $("#second").attr("class", "")
           $(".ballot").attr("id", ballot.second_choice);
         }
       }
     );
   } else {
-    $(".alert").text("CONGRATULATIONS YOU FINISHED THE GAME!");
+    checkWinner();
   }
 }
 
@@ -101,7 +102,6 @@ function checkRunoff() {
 }
 
 function checkSecondRunoff() {
-  alert("second runoff");
   $(".ballot").hide();
   $("#round").hide();
   $("#info").text("Congratulations on counting your second round of votes! To move on to the last round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballots.")
@@ -114,7 +114,20 @@ function checkSecondRunoff() {
   });
   nextRound();
   createThirdBallot();
-  alert("exiting second runoff");
+}
+
+function checkWinner() {
+  $(".ballot").hide();
+  $("#round").hide();
+  $(".vote_counter").hide();
+  $(".alert").hide();
+  $("#info").text("All the ballots have been counted! Now all that's left to do is choose who won. Click on the candidate with the MOST votes to declare them winner.")
+  $("#3").on("click", function(event) {
+    $("#1").hide();
+    $("#round").text("Congratulations!").show();
+    $("#3-count").text("WINNER")
+    $("#info").text("Thanks for completing the Ranked Choice Voting simulator! To play again, just refresh this page.")
+  });
 }
 
 function nextRound() {
@@ -180,6 +193,9 @@ function onDrop(event) {
         break;
       case 2:
         createSecondBallot();
+        break;
+      case 3:
+        createThirdBallot();
         break;
     }
   } else {
