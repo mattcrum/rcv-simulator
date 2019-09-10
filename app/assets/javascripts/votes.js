@@ -5,12 +5,12 @@ let supreme = 0
 let pepperoni = 0
 let hawaiian = 0
 let vote_tally = 1
+let round = 1
 let ballots = []
 
 $(document).ready(function() {
   createBallot();
   $(".candidate").on("dragenter", onDragEnter).on("dragover", onDragOver).on("dragleave", onDragLeave).on("drop", onDrop);
-  console.log("done")
 });
 
 class Ballot {
@@ -30,15 +30,37 @@ function createBallot() {
       function(data) {
         let ballot = new Ballot(data);
         $("#first").text(CHOICES[ballot.first_choice - 1])
-        $(".ballot").attr("id", ballot.first_choice)
         $("#second").text(CHOICES[ballot.second_choice - 1])
         $("#third").text(CHOICES[ballot.third_choice - 1])
+        switch(round) {
+          case 1:
+            $(".ballot").attr("id", ballot.first_choice);
+            break;
+          case 2:
+            $(".ballot").attr("id", ballot.second_choice);
+            break;
+          case 3:
+            $(".ballot").attr("id", ballot.third_round);
+            break;
+        }
       }
     );
-    vote_tally ++;
   } else {
-    console.log("All Done!")
+    alert("All Done!")
+    $("#alert").text("");
+    newRound();
+    createBallot();
   }
+}
+
+function newRound() {
+  vote_tally = 1;
+  round ++;
+  $("#1-count").text("");
+  $("#2-count").text("");
+  $("#3-count").text("");
+  $("#4-count").text("");
+  $("#round").text("Round " + round);
 }
 
 // ------------- NOT USED YET --------------------
@@ -61,6 +83,7 @@ function countVote() {
       $("#4-count").text("(Votes: " + hawaiian + ")")
       break;
   }
+  vote_tally ++;
 }
 
 function onDragEnter(event) {
