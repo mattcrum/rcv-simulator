@@ -63,3 +63,12 @@ body {
   border-radius: 5px;
   margin: auto;
  }
+
+#alert {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: auto 3em;
+  border-radius: 5px;
+  background-color: #DF361C;
+}

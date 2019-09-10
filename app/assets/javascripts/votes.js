@@ -9,6 +9,7 @@ let ballots = []
 
 $(document).ready(function() {
   createBallot();
+  $(".candidate").on("dragenter", onDragEnter).on("dragover", onDragOver).on("dragleave", onDragLeave).on("drop", onDrop);
   console.log("done")
 });
 
@@ -28,10 +29,10 @@ function createBallot() {
     $.get( "/ballots/" + vote_tally + ".json" ).then(
       function(data) {
         let ballot = new Ballot(data);
-        $("#first").append(CHOICES[ballot.first_choice - 1])
+        $("#first").text(CHOICES[ballot.first_choice - 1])
         $(".ballot").attr("id", ballot.first_choice)
-        $("#second").append(CHOICES[ballot.second_choice - 1])
-        $("#third").append(CHOICES[ballot.third_choice - 1])
+        $("#second").text(CHOICES[ballot.second_choice - 1])
+        $("#third").text(CHOICES[ballot.third_choice - 1])
       }
     );
     vote_tally ++;
@@ -40,6 +41,7 @@ function createBallot() {
   }
 }
 
+// ------------- NOT USED YET --------------------
 function countVote(ballot) {
   switch(ballot.first_choice) {
     case 1:
@@ -61,6 +63,7 @@ function countVote(ballot) {
   }
 }
 
+// ------------- NOT USED YET --------------------
 function displayVotes() {
   $("div[data-id=1]").append("(" + mushroom + " Votes)")
   $("div[data-id=2]").append("(" + supreme + " Votes)")
@@ -68,11 +71,13 @@ function displayVotes() {
   $("div[data-id=4]").append("(" + hawaiian + " Votes)")
 }
 
+// ------------- NOT USED YET --------------------
 function countVote(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
-function checkVote(event) {
+function onDragEnter(event) {
+  event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
     event.target.style.border = "3px dotted white";
     console.log("Match")
@@ -82,13 +87,40 @@ function checkVote(event) {
   }
 }
 
-$(document).on("dragleave", function(event) {
+function onDragLeave(event) {
+  event.preventDefault();
   event.target.style.border = "";
-});
+}
 
+function onDragOver(event) {
+  event.preventDefault();
+  console.log("onDragOver")
+}
 
+function onDrop(event) {
+  event.preventDefault();
+  if ( event.target.id === $(".ballot").attr("id") ) {
+    $("#alert").text("CORRECT")
+    event.target.style.border = "";
+    createBallot();
+  } else {
+    $("#alert").text("PLEASE TRY AGAIN")
+    event.target.style.border = "";
+  }
+}
 
 /*
+document.addEventListener("drop", function(event) {
+  debugger;
+  event.preventDefault();
+  if ( event.target.className == "droptarget" ) {
+    document.getElementById("demo").style.color = "";
+    event.target.style.border = "";
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+  }
+});
+
 document.addEventListener("dragenter", function(event) {
   if ( event.target.className == "droptarget" ) {
     event.target.style.border = "3px dotted green";
