@@ -64,11 +64,19 @@ body {
   margin: auto;
  }
 
-#alert {
+ .alert {
   font-size: 1.5em;
   font-weight: 700;
   color: #FFFFFF;
   margin: auto 3em;
   border-radius: 5px;
+ }
+
+#incorrect {
   background-color: #DF361C;
 }
+
+#correct {
+  background-color: #4D7D7F;
+}
+

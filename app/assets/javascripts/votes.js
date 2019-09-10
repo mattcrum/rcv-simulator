@@ -60,10 +60,10 @@ function newRound() {
   $("#2-count").text("");
   $("#3-count").text("");
   $("#4-count").text("");
+  $(".alert").text("");
   $("#round").text("Round " + round);
 }
 
-// ------------- NOT USED YET --------------------
 function countVote() {
   switch($(".ballot").attr("id")) {
     case "1":
@@ -90,10 +90,8 @@ function onDragEnter(event) {
   event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
     event.target.style.border = "3px dotted white";
-    console.log("Match")
   } else {
     event.target.style.border = "3px dotted red";
-    console.log("Next")
   }
 }
 
@@ -110,12 +108,12 @@ function onDragOver(event) {
 function onDrop(event) {
   event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
-    $("#alert").text("CORRECT")
+    $(".alert").text("CORRECT").attr("id", "correct")
     event.target.style.border = "";
     countVote();
     createBallot();
   } else {
-    $("#alert").text("PLEASE TRY AGAIN")
+    $(".alert").text("PLEASE TRY AGAIN").attr("id", "incorrect")
     event.target.style.border = "";
   }
 }
