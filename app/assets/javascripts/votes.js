@@ -42,38 +42,25 @@ function createBallot() {
 }
 
 // ------------- NOT USED YET --------------------
-function countVote(ballot) {
-  switch(ballot.first_choice) {
-    case 1:
+function countVote() {
+  switch($(".ballot").attr("id")) {
+    case "1":
       mushroom ++;
-      console.log(mushroom);
+      $("#1-count").text("(Votes: " + mushroom + ")")
       break;
-    case 2:
+    case "2":
       supreme ++;
-      console.log(supreme);
+      $("#2-count").text("(Votes: " + supreme + ")")
       break;
-    case 3:
+    case "3":
       pepperoni ++;
-      console.log(pepperoni);
+      $("#3-count").text("(Votes: " + pepperoni + ")")
       break;
-    case 4:
+    case "4":
       hawaiian ++;
-      console.log(pepperoni);
+      $("#4-count").text("(Votes: " + hawaiian + ")")
       break;
   }
-}
-
-// ------------- NOT USED YET --------------------
-function displayVotes() {
-  $("div[data-id=1]").append("(" + mushroom + " Votes)")
-  $("div[data-id=2]").append("(" + supreme + " Votes)")
-  $("div[data-id=3]").append("(" + pepperoni + " Votes)")
-  $("div[data-id=4]").append("(" + hawaiian + " Votes)")
-}
-
-// ------------- NOT USED YET --------------------
-function countVote(event) {
-  event.dataTransfer.setData("text", event.target.id);
 }
 
 function onDragEnter(event) {
@@ -102,49 +89,10 @@ function onDrop(event) {
   if ( event.target.id === $(".ballot").attr("id") ) {
     $("#alert").text("CORRECT")
     event.target.style.border = "";
+    countVote();
     createBallot();
   } else {
     $("#alert").text("PLEASE TRY AGAIN")
     event.target.style.border = "";
   }
 }
-
-/*
-document.addEventListener("drop", function(event) {
-  debugger;
-  event.preventDefault();
-  if ( event.target.className == "droptarget" ) {
-    document.getElementById("demo").style.color = "";
-    event.target.style.border = "";
-    var data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
-  }
-});
-
-document.addEventListener("dragenter", function(event) {
-  if ( event.target.className == "droptarget" ) {
-    event.target.style.border = "3px dotted green";
-  } else if (event.target.className == "notarget") {
-    event.target.style.border = "3px dotted red";
-  }
-});
-
-document.addEventListener("dragover", function(event) {
-  event.preventDefault();
-});
-
-document.addEventListener("dragleave", function(event) {
-  if ( event.target.className == "droptarget" ) {
-    event.target.style.border = "";
-  } else if (event.target.className = "notarget") {
-    event.target.style.border = "";
-  }
-});
-
-document.addEventListener("drop", function(event) {
-  if (event.target.className == "droptarget") {
-    document.getElementById("droptarget").style.color="green";
-  }
-});
-
-*/
