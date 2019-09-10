@@ -64,6 +64,10 @@ body {
   margin: auto;
  }
 
+.vote_tally {
+  margin: 1em auto;
+  font-weight: 500;
+}
  .alert {
   font-size: 1.5em;
   font-weight: 700;

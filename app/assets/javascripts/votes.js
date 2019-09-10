@@ -4,7 +4,7 @@ let mushroom = 0
 let supreme = 0
 let pepperoni = 0
 let hawaiian = 0
-let vote_tally = 1
+let vote_tally = 0
 let round = 1
 let ballots = []
 
@@ -25,8 +25,9 @@ class Ballot {
 // Mushroom: 0, Supreme: 1, Pepperoni: 2, Hawaiian: 3
 
 function createBallot() {
-  if (vote_tally < 17) {
-    $.get( "/ballots/" + vote_tally + ".json" ).then(
+  if (vote_tally < 16) {
+    let vote = vote_tally + 1
+    $.get( "/ballots/" + vote + ".json" ).then(
       function(data) {
         let ballot = new Ballot(data);
         $("#first").text(CHOICES[ballot.first_choice - 1])
@@ -46,22 +47,26 @@ function createBallot() {
       }
     );
   } else {
-    alert("All Done!")
-    $("#alert").text("");
-    newRound();
-    createBallot();
+    $(".alert").text("");
+    checkRunoff();
   }
 }
 
+function checkRunoff() {
+  alert("Congratulations on counting your first round of votes! To move on to the next round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballot.")
+  $("#4").on("click", function(event) {
+    alert("Correct! Now let's move onto the second round, and re-count those ballots.")
+    $("#4").hide();
+    newRound();
+  })
+}
+
 function newRound() {
-  vote_tally = 1;
+  vote_tally = 0;
   round ++;
-  $("#1-count").text("");
-  $("#2-count").text("");
-  $("#3-count").text("");
-  $("#4-count").text("");
-  $(".alert").text("");
+  $(".vote_tally").text("");
   $("#round").text("Round " + round);
+  createBallot();
 }
 
 function countVote() {
@@ -84,6 +89,7 @@ function countVote() {
       break;
   }
   vote_tally ++;
+  $(".vote_tally").text("(Votes Counted: " + vote_tally + ")");
 }
 
 function onDragEnter(event) {
