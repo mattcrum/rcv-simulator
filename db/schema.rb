@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_004114) do
+ActiveRecord::Schema.define(version: 2019_09_10_164102) do
 
   create_table "ballots", force: :cascade do |t|
     t.integer "first_choice"
     t.integer "second_choice"
     t.integer "third_choice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "round_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "round_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

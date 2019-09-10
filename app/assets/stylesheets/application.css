@@ -64,7 +64,7 @@ body {
   margin: auto;
  }
 
-.vote_tally {
+.vote_counter {
   margin: 1em auto;
   font-weight: 500;
 }
@@ -82,5 +82,11 @@ body {
 
 #correct {
   background-color: #4D7D7F;
+}
+
+.counted {
+  font-style: italic;
+  color: #DF361C;
+  text-decoration: line-through;
 }
 

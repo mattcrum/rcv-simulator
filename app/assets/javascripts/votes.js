@@ -4,7 +4,8 @@ let mushroom = 0
 let supreme = 0
 let pepperoni = 0
 let hawaiian = 0
-let vote_tally = 0
+let vote_tally = 1
+let vote_counter = 0
 let round = 1
 let ballots = []
 
@@ -24,26 +25,16 @@ class Ballot {
 
 // Mushroom: 0, Supreme: 1, Pepperoni: 2, Hawaiian: 3
 
+// --------------------------------- CODE FOR CREATING BALLOTS ---------------------------------
 function createBallot() {
-  if (vote_tally < 16) {
-    let vote = vote_tally + 1
-    $.get( "/ballots/" + vote + ".json" ).then(
+  if (vote_tally < 17) {
+    $.get( "/rounds/1/ballots/" + vote_tally + ".json" ).then(
       function(data) {
         let ballot = new Ballot(data);
         $("#first").text(CHOICES[ballot.first_choice - 1])
         $("#second").text(CHOICES[ballot.second_choice - 1])
         $("#third").text(CHOICES[ballot.third_choice - 1])
-        switch(round) {
-          case 1:
-            $(".ballot").attr("id", ballot.first_choice);
-            break;
-          case 2:
-            $(".ballot").attr("id", ballot.second_choice);
-            break;
-          case 3:
-            $(".ballot").attr("id", ballot.third_round);
-            break;
-        }
+        $(".ballot").attr("id", ballot.first_choice);
       }
     );
   } else {
@@ -52,21 +43,85 @@ function createBallot() {
   }
 }
 
+function createSecondBallot() {
+  if (vote_tally < 19) {
+    $.get( "/rounds/2/ballots/" + vote_tally + ".json" ).then(
+      function(data) {
+        let ballot = new Ballot(data);
+        $("#first").text(CHOICES[ballot.first_choice - 1]);
+        $("#second").text(CHOICES[ballot.second_choice - 1]);
+        $("#third").text(CHOICES[ballot.third_choice - 1]);
+        $(".ballot").attr("id", ballot.second_choice);
+        $("#first").addClass("counted");
+      }
+    );
+  } else {
+    $(".alert").text("");
+    checkSecondRunoff();
+  }
+}
+
+function createThirdBallot() {
+  if (vote_tally < 22) {
+    $.get("/rounds/3/ballots/" + vote_tally + ".json").then(
+      function(data) {
+        let ballot = new Ballot(data);
+        $("#first").text(CHOICES[ballot.first_choice - 1]);
+        $("#second").text(CHOICES[ballot.second_choice - 1]);
+        $("#third").text(CHOICES[ballot.third_choice - 1]);
+        $("#first").addClass("counted");
+        if (ballot.second_choice === 4) {
+          $("#second").addClass("counted");
+          $(".ballot").attr("id", ballot.third_choice);
+        } else {
+          $(".ballot").attr("id", ballot.second_choice);
+        }
+      }
+    );
+  } else {
+    $(".alert").text("CONGRATULATIONS YOU FINISHED THE GAME!");
+  }
+}
+
+// --------------------------------- CODE FOR DOING ROUNDS ---------------------------------
+
 function checkRunoff() {
-  alert("Congratulations on counting your first round of votes! To move on to the next round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballot.")
+  $(".ballot").hide();
+  $("#round").hide();
+  $("#info").text("Congratulations on counting your first round of votes! To move on to the next round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballots.")
   $("#4").on("click", function(event) {
     alert("Correct! Now let's move onto the second round, and re-count those ballots.")
     $("#4").hide();
-    newRound();
-  })
+    $(".ballot").show();
+    $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
+    $("#round").show();
+  });
+  nextRound();
+  createSecondBallot();
 }
 
-function newRound() {
-  vote_tally = 0;
+function checkSecondRunoff() {
+  alert("second runoff");
+  $(".ballot").hide();
+  $("#round").hide();
+  $("#info").text("Congratulations on counting your second round of votes! To move on to the last round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballots.")
+  $("#2").on("click", function(event) {
+    alert("Correct! Now let's move onto the third and final re-count of the ballots.")
+    $("#2").hide();
+    $(".ballot").show();
+    $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
+    $("#round").show();
+  });
+  nextRound();
+  createThirdBallot();
+  alert("exiting second runoff");
+}
+
+function nextRound() {
+  vote_counter = 0;
   round ++;
-  $(".vote_tally").text("");
+  $(".vote_counter").text("");
   $("#round").text("Round " + round);
-  createBallot();
 }
 
 function countVote() {
@@ -89,9 +144,12 @@ function countVote() {
       break;
   }
   vote_tally ++;
-  $(".vote_tally").text("(Votes Counted: " + vote_tally + ")");
+  console.log(vote_tally);
+  vote_counter ++;
+  $(".vote_counter").text("(Votes Counted: " + vote_counter + ")");
 }
 
+// --------------------------------- CODE FOR DRAG EVENTS ---------------------------------
 function onDragEnter(event) {
   event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
@@ -108,7 +166,6 @@ function onDragLeave(event) {
 
 function onDragOver(event) {
   event.preventDefault();
-  console.log("onDragOver")
 }
 
 function onDrop(event) {
@@ -117,7 +174,14 @@ function onDrop(event) {
     $(".alert").text("CORRECT").attr("id", "correct")
     event.target.style.border = "";
     countVote();
-    createBallot();
+    switch(round) {
+      case 1:
+        createBallot();
+        break;
+      case 2:
+        createSecondBallot();
+        break;
+    }
   } else {
     $(".alert").text("PLEASE TRY AGAIN").attr("id", "incorrect")
     event.target.style.border = "";
