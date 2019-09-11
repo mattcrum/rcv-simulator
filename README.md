@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+SETUP
+- Check Ruby version or install:  https://rubyinstaller.org/
+- Install rails: $ gem install rails
+- Clone/cd into project
+- Install dependencies from Gemfile: $ bundle install
+- Create database: $ rake db:create
+- Migrate database: $ rake db:migrate
+- Seed database with ballots: $ rake db:seed
+- Run server: $ rails s
