@@ -90,3 +90,14 @@ body {
   text-decoration: line-through;
 }
 
+.button {
+  background-color: #DF361C;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 1em;
+  font-weight: 700;
+  margin: 3em auto;
+  text-decoration: none;
+  padding: 1em;
+}
+
