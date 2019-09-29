@@ -1,13 +1,14 @@
-const CHOICES = [ "Mushroom", "Supreme", "Pepperoni", "Hawaiian" ]
+const CHOICES = [ "Mushroom", "Supreme", "Pepperoni", "Hawaiian" ];
 
-let mushroom = 0
-let supreme = 0
-let pepperoni = 0
-let hawaiian = 0
-let vote_tally = 1
-let vote_counter = 0
-let round = 1
-let ballots = []
+let mushroom = 0;
+let supreme = 0;
+let pepperoni = 0;
+let hawaiian = 0;
+let vote_tally = 1;
+let vote_counter = 0;
+let round = 1;
+let ballots = [];
+let counter = 0;
 
 $(document).ready(function() {
   createBallot();
@@ -166,15 +167,19 @@ function countVote() {
 function onDragEnter(event) {
   event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
-    event.target.style.border = "3px dotted white";
+    $(this).addClass('correct');
   } else {
-    event.target.style.border = "3px dotted red";
+    $(this).addClass('incorrect');
   }
 }
 
 function onDragLeave(event) {
   event.preventDefault();
-  event.target.style.border = "";
+  if ( event.target.id === $(".ballot").attr("id") ) {
+    $(this).removeClass('correct');
+  } else {
+    $(this).removeClass('incorrect');
+  }
 }
 
 function onDragOver(event) {
@@ -185,7 +190,7 @@ function onDrop(event) {
   event.preventDefault();
   if ( event.target.id === $(".ballot").attr("id") ) {
     $(".alert").text("CORRECT").attr("id", "correct")
-    event.target.style.border = "";
+    $(this).removeClass('correct');
     countVote();
     switch(round) {
       case 1:

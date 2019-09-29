@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" onLoad="createBallots()">
   <h1 id="round">Round 1</h1>
   <p id="info">Drag and drop your ballot onto the correct choice to count your vote.</p>
 
@@ -7,23 +7,31 @@
   <div class="alert"></div>
 
   <div class="candidate" id="1">
-    <h1>Mushroom</h1>
-    <h3 id="1-count"></h3>
+    <div class="name">
+      <h1>Mushroom</h1>
+      <h3 id="1-count">(Votes: 0)</h3>
+    </div>
   </div>
 
   <div class="candidate" id="2">
-    <h1>Supreme</h1>
-    <h3 id="2-count"></h3>
+    <div class="name">
+      <h1>Supreme</h1>
+      <h3 id="2-count">(Votes: 0)</h3>
+    </div>
   </div>
 
   <div class="candidate" id="3">
-    <h1>Pepperoni</h1>
-    <h3 id="3-count"></h3>
+    <div class="name">
+      <h1>Pepperoni</h1>
+      <h3 id="3-count">(Votes: 0)</h3>
+    </div>
   </div>
 
   <div class="candidate" id="4">
-    <h1>Hawaiian</h1>
-    <h3 id="4-count"></h3>
+    <div class="name">
+      <h1 class="name">Hawaiian</h1>
+      <h3 id="4-count">(Votes: 0)</h3>
+    </div>
   </div>
 
   <div class="ballot" draggable="true">

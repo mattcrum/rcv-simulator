@@ -50,6 +50,7 @@ body {
   font-size: .75em;
   margin: 3em 1em;
   padding-top: 2.5em;
+  padding-bottom: 2em;
   border-radius: 5px;
  }
 
@@ -101,3 +102,12 @@ body {
   padding: 1em;
 }
 
+.incorrect {
+  border: 3px dotted red;
+}
+
+.correct {
+  border: 3px dotted white;
+}
+
+.name { pointer-events: none; }
