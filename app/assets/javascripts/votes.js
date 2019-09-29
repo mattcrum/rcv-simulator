@@ -93,19 +93,27 @@ function checkRunoff() {
   $("#runoff").show();
   $("#info").text("Next we need to determine if any candidate has a majority. With 16 ballots, a majority would be 9 votes. Has any pizza received 9 votes?")
   $(".runoff").css('display', 'inline-block').show();
-  $("#yes").on("click", function(event) {
+  $("#no").on("click", function(event) {
     $(".candidate").show();
+    $(".alert").hide();
     $(".runoff").hide();
     $("#info").text("Since no candidate received a majority, we eliminate the least popular pizza and move those ballots to the voters' next available choices. Click on the least popular pizza");
     $("#4").on("click", function(event) {
-      alert("Correct! Now let's move onto the second round, and re-count those ballots.")
-      $("#4").hide();
-      $(".ballot").show();
-      $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
-      $("#round").show();
+      $("#info").text("Correct! Now you will see the ballots of the voters who chose Hawaiian. On each ballot, Hawaiian will be crossed out, since it is eliminated. ");
+      $(".candidate").hide();
+      $("#next").css('display', 'inline-block').show();
+      $("#next").on("click", function(event) {
+        $(".candidate").show();
+        $(".ballot").show();
+        $("#4").hide();
+        $("#runoff").hide();
+        $("#round").show();
+        $("#next").hide();
+        $("#info").text("Drag the ballots onto the stack that matches each ballot's next available choice")
+      });
     });
   });
-  $("#no").on("click", function(event) {
+  $("#yes").on("click", function(event) {
     $(".alert").text("PLEASE TRY AGAIN").attr("id", "incorrect")
   });
   nextRound();
@@ -115,13 +123,30 @@ function checkRunoff() {
 function checkSecondRunoff() {
   $(".ballot").hide();
   $("#round").hide();
-  $("#info").text("Congratulations on counting your second round of votes! To move on to the last round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballots.")
-  $("#2").on("click", function(event) {
-    alert("Correct! Now let's move onto the third and final re-count of the ballots.")
-    $("#2").hide();
-    $(".ballot").show();
-    $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
-    $("#round").show();
+  $("#runoff").show();
+  $("#info").text("Next we need to determine if any candidate has a majority. With 16 ballots, a majority would be 9 votes. Has any pizza received 9 votes?")
+  $(".runoff").css('display', 'inline-block').show();
+  $("#no").on("click", function(event) {
+    $(".candidate").show();
+    $("#4").hide();
+    $(".alert").hide();
+    $(".runoff").hide();
+    $("#info").text("Since no candidate received a majority, we eliminate the least popular pizza and move those ballots to the voters' next available choices. Click on the least popular pizza");
+    $("#2").on("click", function(event) {
+      $("#info").text("Correct!  Now you will see the ballots of the voters who chose Supreme. On each ballot, all of the eliminated pizzas will be crossed out.");
+      $(".candidate").hide();
+      $("#next").css('display', 'inline-block').show();
+      $("#next").on("click", function(event) {
+        $(".ballot").show();
+        $("#1").show();
+        $("#2").css('display', 'none').hide();
+        $("#3").show();
+        $("#runoff").hide();
+        $("#round").show();
+        $("#next").hide();
+        $("#info").text("Drag the ballots onto the stack that matches each ballot's next available choice.")
+      });
+    });
   });
   nextRound();
   createThirdBallot();
@@ -132,12 +157,14 @@ function checkWinner() {
   $("#round").hide();
   $(".vote_counter").hide();
   $(".alert").hide();
-  $("#info").text("All the ballots have been counted! Now all that's left to do is choose who won. Click on the candidate with the MOST votes to declare them winner.")
+  $("#runoff").show();
+  $("#info").text("Now, look at the total votes and click on the winning pizza.")
   $("#3").on("click", function(event) {
     $("#1").hide();
     $("#round").text("Congratulations!").show();
+    $("#runoff").hide();
     $("#3-count").text("WINNER")
-    $("#info").text("Thanks for completing the Ranked Choice Voting simulator! To play again, just refresh this page.")
+    $("#info").text("As you can see, Ranked Choice Voting allows us to easily determine which type of pizza is most preferred by most people. To play again, just refresh this page.")
   });
 }
 
@@ -201,6 +228,7 @@ function onDrop(event) {
   if ( event.target.id === $(".ballot").attr("id") ) {
     $(".alert").text("CORRECT").attr("id", "correct")
     $(this).removeClass('correct');
+    $(this).removeClass('incorrect');
     countVote();
     switch(round) {
       case 1:

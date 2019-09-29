@@ -127,3 +127,17 @@ body {
 .name { pointer-events: none; }
 
 #runoff { display: none; }
+
+#next {
+  background-color: #DF361C;
+  display: none;
+  height: 50px;
+  width: 15%;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: .5em;
+  margin: 3em 1em;
+  padding-top: 1em;
+  padding-bottom: .75em;
+  border-radius: 5px;
+ }
