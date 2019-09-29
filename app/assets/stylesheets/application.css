@@ -54,6 +54,19 @@ body {
   border-radius: 5px;
  }
 
+.runoff {
+  background-color: #DF361C;
+  display: none;
+  height: 50px;
+  width: 15%;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: .75em;
+  margin: 3em 1em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  border-radius: 5px;
+ }
 
 .ballot {
   border: 3px solid gray;
@@ -69,7 +82,8 @@ body {
   margin: 1em auto;
   font-weight: 500;
 }
- .alert {
+
+.alert {
   font-size: 1.5em;
   font-weight: 700;
   color: #FFFFFF;
@@ -111,3 +125,5 @@ body {
 }
 
 .name { pointer-events: none; }
+
+#runoff { display: none; }

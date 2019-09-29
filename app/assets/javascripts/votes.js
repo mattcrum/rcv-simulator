@@ -90,13 +90,23 @@ function createThirdBallot() {
 function checkRunoff() {
   $(".ballot").hide();
   $("#round").hide();
-  $("#info").text("Congratulations on counting your first round of votes! To move on to the next round, check the amount of votes for each candidate and click on the one with the least amount of votes so we can re-count their ballots.")
-  $("#4").on("click", function(event) {
-    alert("Correct! Now let's move onto the second round, and re-count those ballots.")
-    $("#4").hide();
-    $(".ballot").show();
-    $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
-    $("#round").show();
+  $("#runoff").show();
+  $("#info").text("Next we need to determine if any candidate has a majority. With 16 ballots, a majority would be 9 votes. Has any pizza received 9 votes?")
+  $(".runoff").css('display', 'inline-block').show();
+  $("#yes").on("click", function(event) {
+    $(".candidate").show();
+    $(".runoff").hide();
+    $("#info").text("Since no candidate received a majority, we eliminate the least popular pizza and move those ballots to the voters' next available choices. Click on the least popular pizza");
+    $("#4").on("click", function(event) {
+      alert("Correct! Now let's move onto the second round, and re-count those ballots.")
+      $("#4").hide();
+      $(".ballot").show();
+      $("#info").text("Drag and drop your ballot onto the correct choice to count your vote.")
+      $("#round").show();
+    });
+  });
+  $("#no").on("click", function(event) {
+    $(".alert").text("PLEASE TRY AGAIN").attr("id", "incorrect")
   });
   nextRound();
   createSecondBallot();
