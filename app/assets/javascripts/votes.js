@@ -10,7 +10,7 @@ let round = 1;
 let ballots = [];
 let counter = 0;
 
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
   createBallot();
   $(".candidate").on("dragenter", onDragEnter).on("dragover", onDragOver).on("dragleave", onDragLeave).on("drop", onDrop);
 });
