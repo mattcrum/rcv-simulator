@@ -128,6 +128,8 @@ body {
 
 #runoff { display: none; }
 
+.gif { display: none; }
+
 #next {
   background-color: #DF361C;
   display: none;
@@ -138,6 +140,6 @@ body {
   font-size: .5em;
   margin: 3em 1em;
   padding-top: 1em;
-  padding-bottom: .75em;
+  padding-bottom: .5em;
   border-radius: 5px;
  }

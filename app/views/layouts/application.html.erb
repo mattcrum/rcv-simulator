@@ -9,9 +9,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body onload="createBallot()">
     <div class="navbar">
-      <a class="navbar-text" href=""/>Ranked Choice Tennessee</a>
+      <a class="navbar-text" href="/"/>Ranked Choice Tennessee</a>
       <a class="navbar-text" href="https://www.rankedchoicetn.org" style="float: right" href=""/>Learn More</a>
     </div>
     <%= yield %>
