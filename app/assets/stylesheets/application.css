@@ -143,3 +143,13 @@ body {
   padding-bottom: .5em;
   border-radius: 5px;
  }
+
+ @media screen and (max-width: 600px;) {
+  .ballot {
+    touch-action: none;
+  }
+
+  .candidate {
+    touch-action: none;
+  }
+ }

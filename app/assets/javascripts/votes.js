@@ -95,11 +95,24 @@ function checkRunoff() {
   $(".runoff").css('display', 'inline-block').show();
   $("#no").on("click", function(event) {
     $(".candidate").show();
-    $(".alert").hide();
+    $(".alert").text("");
     $(".runoff").hide();
     $("#info").text("Since no candidate received a majority, we eliminate the least popular pizza and move those ballots to the voters' next available choices. Click on the least popular pizza");
+    $("#1").on("click", function(event) {
+      $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    });
+    $("#2").on("click", function(event) {
+      $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    });
+    $("#3").on("click", function(event) {
+      $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    });
     $("#4").on("click", function(event) {
       $("#info").text("Correct! Now you will see the ballots of the voters who chose Hawaiian. On each ballot, Hawaiian will be crossed out, since it is eliminated. ");
+      $("#1").off("click");
+      $("#2").off("click");
+      $("#3").off("click");
+      $(".alert").text("");
       $(".candidate").hide();
       $("#next").css('display', 'inline-block').show();
       $("#next").on("click", function(event) {
@@ -129,11 +142,20 @@ function checkSecondRunoff() {
   $("#no").on("click", function(event) {
     $(".candidate").show();
     $("#4").hide();
-    $(".alert").hide();
+    $(".alert").text("");
     $(".runoff").hide();
     $("#info").text("Since no candidate received a majority, we eliminate the least popular pizza and move those ballots to the voters' next available choices. Click on the least popular pizza");
+    $("#1").on("click", function(event) {
+      $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    });
+    $("#3").on("click", function(event) {
+      $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    });
     $("#2").on("click", function(event) {
       $("#info").text("Correct!  Now you will see the ballots of the voters who chose Supreme. On each ballot, all of the eliminated pizzas will be crossed out.");
+      $("#1").off("click");
+      $("#3").off("click");
+      $(".alert").text("");
       $(".candidate").hide();
       $("#next").css('display', 'inline-block').show();
       $("#next").on("click", function(event) {
@@ -156,11 +178,15 @@ function checkWinner() {
   $(".ballot").hide();
   $("#round").hide();
   $(".vote_counter").hide();
-  $(".alert").hide();
+  $(".alert").text("");
   $("#runoff").show();
   $("#info").text("Now, look at the total votes and click on the winning pizza.")
+  $("#1").on("click", function(event) {
+    $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+  });
   $("#3").on("click", function(event) {
     $("#1").hide();
+    $(".alert").text("")
     $("#round").text("Congratulations!").show();
     $("#runoff").hide();
     $("#3-count").text("WINNER")
@@ -196,7 +222,6 @@ function countVote() {
       break;
   }
   vote_tally ++;
-  console.log(vote_tally);
   vote_counter ++;
   $(".vote_counter").text("(Votes Counted: " + vote_counter + ")");
 }
@@ -244,6 +269,7 @@ function onDrop(event) {
     }
   } else {
     $(".alert").text("PLEASE TRY AGAIN").attr("id", "incorrect")
-    event.target.style.border = "";
+    $(this).removeClass('correct');
+    $(this).removeClass('incorrect');
   }
 }
