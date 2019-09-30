@@ -182,7 +182,7 @@ function checkWinner() {
   $("#runoff").show();
   $("#info").text("Now, look at the total votes and click on the winning pizza.")
   $("#1").on("click", function(event) {
-    $(".alert").text("Hint: Which pizza has the fewest votes?").attr("id", "incorrect")
+    $(".alert").text("Hint: Which pizza has the most votes?").attr("id", "incorrect")
   });
   $("#3").on("click", function(event) {
     $("#1").hide();
