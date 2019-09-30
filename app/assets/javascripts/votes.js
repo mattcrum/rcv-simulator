@@ -190,8 +190,9 @@ function checkWinner() {
     $("#round").text("Congratulations!").show();
     $("#runoff").hide();
     $("#3-count").text("WINNER")
-    $("#info").text("As you can see, Ranked Choice Voting allows us to easily determine which type of pizza is most preferred by most people. To play again, just refresh this page.")
+    $("#info").text("As you can see, Ranked Choice Voting allows us to easily determine which type of pizza is most preferred by most people. Scroll down to see a breakdown of the amount of votes each candidate received per round. To play again, just refresh this page.")
     $(".gif").show();
+    $("#breakdown").show();
   });
 }
 

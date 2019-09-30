@@ -144,7 +144,24 @@ body {
   border-radius: 5px;
  }
 
- @media screen and (max-width: 600px;) {
+table, th, td {
+  border: 1px solid black;
+  padding: .75em .5em;
+  margin: 2em auto;
+  position: inline-block;
+  font-size: 1.1em;
+}
+
+.eliminated {
+  background-color: #DF361C;
+  color: #ffffff;
+}
+
+#breakdown {
+  display: none;
+}
+
+@media screen and (max-width: 600px;) {
   .ballot {
     touch-action: none;
   }
