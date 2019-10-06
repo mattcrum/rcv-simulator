@@ -1,5 +1,9 @@
 {
   "name": "rcv-simulator",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-dev-server": "^3.8.2"
+  }
 }
